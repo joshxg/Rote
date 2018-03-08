@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rote.Views.PlayPage"
+             xmlns:XF="clr-namespace:Rote.Controls;assembly=Rote"
+             xmlns:ViewModel="clr-namespace:Rote.ViewModels;assembly=Rote"
+             xmlns:Controls="clr-namespace:Rote.Controls;assembly=Rote"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:xfFlipViewControl="clr-namespace:XFFlipViewControl;assembly=Rote"
+             x:Name="PlayPage">
+
+    <ContentPage.Content>
+        <controls:CarouselViewControl ItemsSource="{Binding Cards}"
+                                      Position="{Binding Position}"
+                                      IsSwipeEnabled="False">
+            <controls:CarouselViewControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid BackgroundColor="#FFFFFF">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <xfFlipViewControl:XFFlipView   x:Name="Flip"
+                                                        IsFlipped="{Binding Source={x:Reference PlayPage}, Path=BindingContext.IsFlipped}"
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        Grid.RowSpan="3"
+                                                        Grid.ColumnSpan="5">
+
+                            <xfFlipViewControl:XFFlipView.FrontView>
+                                <Frame HasShadow="True">
+
+                                    <Controls:CardLabel x:Name="CLabel"
+                                                        Text="{Binding Question}"
+                                                        ID="{Binding ID}"
+                                                        Score="{Binding Score}"
+                                                        VerticalOptions="FillAndExpand"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        HorizontalTextAlignment="Center"
+                                                        VerticalTextAlignment="Center"
+                                                        FontFamily="Fonts/RockSalt-Regular.ttf#RockSalt-Regular"
+                                                        FontSize="25">
+                                    <Controls:CardLabel.GestureRecognizers >
+                                    
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference PlayPage}, Path=BindingContext.Flip}"/>
+                                        </Controls:CardLabel.GestureRecognizers>
+                                    </Controls:CardLabel>
+
+                                </Frame>
+                            </xfFlipViewControl:XFFlipView.FrontView>
+
+                            <xfFlipViewControl:XFFlipView.BackView>
+                                <Frame HasShadow="True">
+
+                                    <Controls:CardLabel Text="{Binding Answer}"
+                                                        HeightRequest="200"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        HorizontalTextAlignment="Center"
+                                                        VerticalTextAlignment="Center"
+                                                        FontFamily="Fonts/RockSalt-Regular.ttf#RockSalt-Regular"
+                                                        FontSize="25">
+                                        <Controls:CardLabel.GestureRecognizers >
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference PlayPage}, Path=BindingContext.Flip}"/>
+                                        </Controls:CardLabel.GestureRecognizers>
+                                    </Controls:CardLabel>
+
+                                </Frame>
+
+
+                                
+                            </xfFlipViewControl:XFFlipView.BackView>
+
+
+                        </xfFlipViewControl:XFFlipView>
+                        
+                        <Button x:Name="Right"
+                                    Text="Correct"
+                                    Command="{Binding Source={x:Reference PlayPage}, Path=BindingContext.RightAnswer}"
+                                    CommandParameter="{x:Reference CLabel}"
+                                    Grid.Row="6"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"/>
+
+                        <Button x:Name="Wrong"
+                                    Text="Wrong"
+                                    Command="{Binding Source={x:Reference PlayPage}, Path=BindingContext.WrongAnswer}"
+                                    CommandParameter="{x:Reference CLabel}"
+                                    Grid.Row="6"
+                                    Grid.Column="4"
+                                    Grid.ColumnSpan="2"/>
+
+                    </Grid>
+                </DataTemplate>
+            </controls:CarouselViewControl.ItemTemplate>
+        </controls:CarouselViewControl>
+    </ContentPage.Content>
+</ContentPage>
+            

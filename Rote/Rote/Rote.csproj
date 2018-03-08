@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>2</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Behaviors.Forms" Version="1.2.0" />
+    <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.145-pre" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.2.0.130-beta" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\MainPage.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\ByScorePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EditCardsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EditDeckPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MultiChoicePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NotificationSettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PlayPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PlayPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PopupNewDeck.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RenamePopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SelectDeckPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SelectGamePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

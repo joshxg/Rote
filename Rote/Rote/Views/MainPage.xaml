@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Rote"
+             x:Class="Rote.MainPage">
+
+    <StackLayout x:Name="MainPageLayout"
+                 BackgroundColor="#35c7f0"
+                 Spacing="20"
+                 Padding="0">
+
+            <Label  x:Name="MainHeader"
+                    Text="RoteCards"
+                    HorizontalTextAlignment="Center"
+                    FontSize="40"
+                    TextColor="WhiteSmoke"
+                    FontFamily="Fonts/RockSalt-Regular.ttf#RockSalt-Regular"/>
+
+            <StackLayout Margin="20,50,20,0">
+                <Frame  HasShadow="True"
+                    OutlineColor="Transparent">
+
+                    <Label  Text="Play"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        FontSize="25"
+                        FontAttributes="Bold"
+                        YAlign="Center">
+                        <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Select}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Frame>
+                <Frame  HasShadow="True"
+                    OutlineColor="Transparent">
+
+                    <Label  Text="Edit"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        FontSize="25"
+                        FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Edit}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Frame>
+
+                <Frame  HasShadow="True"
+                    OutlineColor="Transparent">
+
+                    <Label  Text="Settings"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        FontSize="25"
+                        FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Settings}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Frame>
+            </StackLayout>
+        <Button Text="Reset"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                FontSize="10"
+                Command="{Binding Reset}"/>
+    </StackLayout>
+
+    </ContentPage>

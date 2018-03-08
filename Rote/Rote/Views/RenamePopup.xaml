@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage    xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                    x:Class="Rote.Views.RenamePopup">
+
+    <ContentPage.Content>
+
+            <StackLayout HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="CenterAndExpand"
+                     BackgroundColor="#CCCCCC">
+            
+            <Label Text="New name"
+                   VerticalTextAlignment="Center"
+                   WidthRequest="200"/>
+            
+            <Entry x:Name="NameEntry"
+                   Placeholder="{Binding Deck.Name}"/>
+
+            <Button Text="Save"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Command="{Binding Rename}"
+                    CommandParameter="{Binding Source={x:Reference NameEntry}, Path=Text}"/>
+
+            <Button Text="Cancel"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Command="{Binding Cancel}"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

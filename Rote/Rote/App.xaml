@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rote.App">
+	<Application.Resources>
+
+		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#35c7f0"/>
+            </Style>
+        </ResourceDictionary>
+
+
+    </Application.Resources>
+</Application>

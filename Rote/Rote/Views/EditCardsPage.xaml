@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage    xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+                xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+                x:Class="Rote.Views.EditCardsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="ADD" Command="{Binding Add}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Disappearing">
+        <behaviors:InvokeCommandAction Command="{Binding PageDisappearingCommand}" />
+    </behaviors:EventHandlerBehavior>
+        </ContentPage.Behaviors>
+            <ContentPage.Content>
+        <controls:CarouselViewControl ItemsSource="{Binding Cards}"
+                                      Position="{Binding Position}">
+            <controls:CarouselViewControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+
+                            
+                        
+
+                        <Editor Grid.Row="1"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="3"
+                                        Text="{Binding Question}"/>
+
+                            <Editor Grid.Row="4"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="3"
+                                        Text="{Binding Answer}"/>
+
+
+
+                    </Grid>
+                </DataTemplate>
+            </controls:CarouselViewControl.ItemTemplate>
+        </controls:CarouselViewControl>
+    </ContentPage.Content>
+</ContentPage>
+                        
+                    
+            

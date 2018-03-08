@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rote.Views.SettingsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Hand Size"/>
+                <Entry Text="{Binding HandSize}"/>
+            </StackLayout>
+            <StackLayout>
+                <Stepper Increment="1"
+                         Maximum="20"
+                         Minimum="1"
+                         Value="{Binding HandSize}"/>
+                <Button Text="Notification Settings"
+                        Command="NotificationSettings"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
