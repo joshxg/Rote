@@ -17,18 +17,13 @@ namespace Rote.Droid
 {
     public class LocalNotificationAndroid : ILocalNotifications
     {
-        public void SendLocalNotification(string title, string desc, int iconID)
+        public void SendLocalNotification()
         {
+            var sendAt = (Settings.NextNotification - DateTime.Now.Hour) % 24;
             Intent AlarmIntent = new Intent(Application.Context, typeof(AlarmReceiver));
-            Bundle values = new Bundle();
-            values.PutString("title", "THIS IS THE TITLE");
-            values.PutString("desc", "THIS IS THE DESCRIPTION");
-            AlarmIntent.PutExtras(values);
-
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, AlarmIntent, PendingIntentFlags.UpdateCurrent);
-
             AlarmManager alarmManager = Application.Context.GetSystemService(Context.AlarmService) as AlarmManager;
-            alarmManager.Set(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + 5 * 1000, pendingIntent);
+            alarmManager.Set(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + sendAt * 1000, pendingIntent);
         }
     }
 }

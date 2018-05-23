@@ -10,39 +10,77 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Rote.Models;
 
 namespace Rote.Droid
 {
     [BroadcastReceiver]
     public class AlarmReceiver : BroadcastReceiver
     {
+
+        NotificationScheduleDB NotificationDB;
+
         public override void OnReceive(Context context, Intent intent)
         {
-            var title = intent.GetStringExtra("title");
-            var description = intent.GetStringExtra("desc");
+            NotificationDB = new NotificationScheduleDB();
+            var ScheduledNotifications = NotificationDB.GetNextNotifications();
 
+            foreach (NotificationSchedule ScheduledNotification in ScheduledNotifications)
+            {
+                Bundle Data = GetDataBundle(ScheduledNotification);
+                var NotificationIntent = GetLaunchIntent(Data);
+                PendingIntent ContentIntent = PendingIntent.GetActivity(Application.Context, 0, NotificationIntent, PendingIntentFlags.UpdateCurrent);
+                var Notification = GetNotification(ScheduledNotification, ContentIntent);
+                var NotificationManager = NotificationManagerCompat.From(Application.Context);
+                NotificationManager.Notify(ScheduledNotification.ID, Notification);
+            }
+        }
+
+        private Bundle GetDataBundle(NotificationSchedule ScheduledNotification)
+        {
+            Bundle Data = new Bundle();
+            var DeckName = ScheduledNotification.Deck.Name;
+            var DeckID = ScheduledNotification.DeckID;
+            var Game = ScheduledNotification.Game;
+            Data.PutString("DeckName", DeckName);
+            Data.PutInt("ID", DeckID);
+            Data.PutInt("Game", Game);
+            return Data;
+        } 
+
+        private Intent GetLaunchIntent(Bundle Data)
+        {
             var NotificationIntent = Application.Context.PackageManager.GetLaunchIntentForPackage(Application.Context.PackageName);
+            NotificationIntent.PutExtras(Data);
+            NotificationIntent.SetFlags(ActivityFlags.SingleTop);
+            return NotificationIntent;
+        }
 
-            TaskStackBuilder stackBuilder = TaskStackBuilder.Create(Application.Context);
-            stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(MainActivity)));
-            stackBuilder.AddNextIntent(NotificationIntent);
-            PendingIntent ContentIntent = stackBuilder.GetPendingIntent(0, (int)PendingIntentFlags.OneShot);
-
-            var NotificationManager = NotificationManagerCompat.From(Application.Context);
-
+        private Notification GetNotification(NotificationSchedule ScheduledNotification, PendingIntent ContentIntent)
+        {
             Notification.Builder builder = new Notification.Builder(Application.Context)
-                .SetContentTitle(title)
+                .SetContentTitle("Time to play!")
                 .SetContentIntent(ContentIntent)
-                .SetContentText(description)
+                .SetContentText(String.Format("Smash some {0} cards", ScheduledNotification.Deck.Name))
                 .SetSmallIcon(Resource.Drawable.icon)
                 .SetAutoCancel(true);
-
-            Notification notification = builder.Build();
-            NotificationManager.Notify(0, notification);
+            return builder.Build();
         }
+
+        private void SetNextAlarm()
+        {
+            NotificationDB.SetNextNotificationTime();
+            var Notif = new LocalNotificationAndroid();
+            Notif.SendLocalNotification();
+        }
+
+
+
+
+
+
+
+
     }
 }
-
-                
-
 

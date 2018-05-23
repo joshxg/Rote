@@ -1,21 +1,172 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Rote.Views.SettingsPage">
+             x:Class="Rote.Views.SettingsPage"
+             xmlns:Controls="clr-namespace:Rote.Controls;assembly=Rote">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Hand Size"/>
-                <Entry Text="{Binding HandSize}"/>
-            </StackLayout>
-            <StackLayout>
-                <Stepper Increment="1"
-                         Maximum="20"
-                         Minimum="1"
-                         Value="{Binding HandSize}"/>
-                <Button Text="Notification Settings"
-                        Command="NotificationSettings"/>
-            </StackLayout>
-        </StackLayout>
+
+        <Controls:CustomTableView HasUnevenRows="True">
+            <TableRoot>
+                <TableSection   Title="General">
+                    <ViewCell>
+                        <Grid Padding="15,10,15,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Grid.RowSpan="2"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="Hand Size"
+                                   VerticalTextAlignment="Start"
+                                   HorizontalTextAlignment="Start"
+                                   FontSize="Large"/>
+                            
+                            <Label Grid.Row="0"
+                                   Grid.RowSpan="1"
+                                   Grid.Column="2"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding HandSize}"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"/>
+                            
+                            <Controls:CustomSlider  Grid.Row="1"
+                                                    Grid.RowSpan="1"
+                                                    Grid.Column="2"
+                                                    Grid.ColumnSpan="2"
+                                                    Maximum="20"
+                                                    Minimum="0"
+                                                    Value="{Binding HandSize}"/>
+                        </Grid>
+                    </ViewCell>
+                </TableSection>
+
+                <TableSection Title="Notifications">
+
+                    <ViewCell>
+                        <Grid Padding="15,10,15,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Label  Text="Notifications"
+                                    VerticalTextAlignment="Start"
+                                    HorizontalTextAlignment="Start"
+                                    FontSize="Large"/>
+
+                            <Controls:CustomSwitch Grid.Column="1"
+                                    IsToggled="True"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"/>
+                        </Grid>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <Grid Padding="15,10,15,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0"
+                                   Grid.RowSpan="1"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="Start Time"
+                                   VerticalTextAlignment="Start"
+                                   HorizontalTextAlignment="Start"
+                                   FontSize="Large"/>
+
+                            <Label Grid.Row="0"
+                                   Grid.RowSpan="1"
+                                   Grid.Column="2"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding StartTimeString}"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   FontSize="Large"/>
+
+                            <Controls:CustomSlider  Grid.Row="1"
+                                                    Grid.RowSpan="1"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="4"
+                                                    Maximum="24"
+                                                    Minimum="0"
+                                                    Value="{Binding StartTime}"/>
+                        </Grid>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <Grid  Padding="15,10,15,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0"
+                                   Grid.RowSpan="1"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="End Time"
+                                   VerticalTextAlignment="Start"
+                                   HorizontalTextAlignment="Start"
+                                   FontSize="Large"/>
+
+                            <Label Grid.Row="0"
+                                   Grid.RowSpan="1"
+                                   Grid.Column="2"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding EndTimeString}"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   FontSize="Large"/>
+
+                            <Controls:CustomSlider  Grid.Row="1"
+                                                    Grid.RowSpan="1"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="4"
+                                                    Maximum="24"
+                                                    Minimum="0"
+                                                    Value="{Binding EndTime}"/>
+                        </Grid>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout>
+                            <Button Text="Deck Notifications"
+                                    Command="{Binding SelectDeck}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+               
+            </TableRoot>
+        </Controls:CustomTableView>
+
+
+        
+        
     </ContentPage.Content>
 </ContentPage>

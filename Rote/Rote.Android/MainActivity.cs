@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using CarouselView.FormsPlugin.Android;
+using Android.Content;
 
 namespace Rote.Droid
 {
@@ -15,16 +16,46 @@ namespace Rote.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            Window.SetStatusBarColor(new Android.Graphics.Color(53, 199, 240));
+            CarouselViewRenderer.Init();
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
             base.OnCreate(bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
-            Window.SetStatusBarColor(new Android.Graphics.Color(53, 199, 240));
-            CarouselViewRenderer.Init();
+            if (Intent.HasExtra("ID"))
+            {
+                var ID = Intent.GetIntExtra("ID", -1);
+                var Game = Intent.GetIntExtra("Game", -1);
+                LoadApplication(new App(ID, Game));
+
+            }
+            else
+            {
+                LoadApplication(new App());
+            }
+
+            
+            
+            
         }
+
+        protected override void OnNewIntent(Intent intent)
+        {
+            if (intent.HasExtra("ID"))
+            {
+                var ID = intent.GetIntExtra("ID", -1);
+                var Game = intent.GetIntExtra("Game", -1);
+                LoadApplication(new App(ID, Game));
+
+            }
+            else
+            {
+                LoadApplication(new App());
+            }
+        }
+
+
 
         public override void OnBackPressed()
         {

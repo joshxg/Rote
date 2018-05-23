@@ -19,5 +19,11 @@ namespace Rote.Views
 			InitializeComponent ();
             BindingContext = new ByScoreViewModel(Deck);
 		}
-	}
+
+        public ByScorePage(int DeckID)
+        {
+            InitializeComponent();
+            BindingContext = new ByScoreViewModel(DeckID);
+        }
+    }
 }

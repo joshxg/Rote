@@ -11,28 +11,23 @@ namespace Rote.Models
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public int DeckID { get; set; }
-        public int Interval { get; set; } //In hours
-        public int SleepStart { get; set; } //Starting hour of no notifications
-        public int SleepEnd { get; set; } //Ending hour of no notifications
-        public int SleepPeriod { get; set; }
-        public int Game;
+        public int Time { get; set; } //In 24 hour time
+        public int Game { get; set; }
 
-        [Ignore]
-        public Deck Deck { get; set; }
-
+        
+        public Deck Deck;
         public enum GameType { Random, Multichoice, ByScore }
+
         
         public NotificationSchedule() { }
         
 
-        public NotificationSchedule(Deck Deck, int SleepStart, int SleepEnd, int Interval, GameType GameType)
+        public NotificationSchedule(Deck Deck, int Time, GameType GameType)
         {
             this.Deck = Deck;
-            this.SleepStart = SleepStart;
-            this.SleepEnd = SleepEnd;
-            this.Interval = Interval;
+            this.DeckID = Deck.ID;
+            this.Time = Time;
             this.Game = (int)GameType;
-            this.SleepPeriod = SleepEnd - SleepStart;
         }
     }
 

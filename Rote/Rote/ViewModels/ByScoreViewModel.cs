@@ -53,6 +53,19 @@ namespace Rote.ViewModels
             GetCards();
         }
 
+        public ByScoreViewModel(int DeckID)
+        {
+            DeckDatabase = new DeckDB();
+            this.Deck = DeckDatabase.GetDeck(DeckID);
+            CardDatabase = new CardDB(Deck);
+            HandSize = Settings.HandSize;
+            RightAnswer = new Command(Right);
+            WrongAnswer = new Command(Wrong);
+            Flip = new Command(FlipIt);
+            Random = new Random();
+            GetCards();
+        }
+
         public void GetCards()
         {
             ScheduledScore = DeckDatabase.GetScheduled(Deck);

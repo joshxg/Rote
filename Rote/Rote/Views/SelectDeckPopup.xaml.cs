@@ -1,25 +1,23 @@
-﻿using Rote.ViewModels;
+﻿using Rg.Plugins.Popup.Pages;
+using Rote.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Rote.Models;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.Collections.ObjectModel;
 
 namespace Rote.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NotificationSettingsPage : ContentPage
+	public partial class SelectDeckPopup : PopupPage
 	{
-  
-
-		public NotificationSettingsPage(Deck Deck)
+		public SelectDeckPopup ()
 		{
 			InitializeComponent ();
-            BindingContext = new NotificationSettingsViewModel(Deck);
+            BindingContext = new SelectDeckPopupModel();
 		}
 	}
 }

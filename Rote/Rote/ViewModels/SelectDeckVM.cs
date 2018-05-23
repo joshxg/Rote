@@ -55,6 +55,10 @@ namespace Rote.ViewModels
             {
                 Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new ByScorePage(deck));
             }
+            else if(Type == 4)
+            {
+                Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new NotificationSettingsPage(deck));
+            }
         }
     }
 }

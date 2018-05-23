@@ -4,8 +4,23 @@
              x:Class="Rote.Views.NotificationSettingsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Hi"
+            <Picker     Title="Choose a game.."
+                        ItemsSource="{Binding GamesList}"
+                        SelectedIndex="{Binding GameSelection}"/>
+
+
+            <Stepper Increment="1"
+                     Maximum="24"
+                     Minimum="1"
+                     Value="{Binding Interval}"/>
+
+            <StackLayout>
+            <Button Text="Save"
                     Command="{Binding Schedule}"/>
+                <Button Text="Cancel"
+                    Command="{Binding Cancel}"/>
+            </StackLayout>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

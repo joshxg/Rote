@@ -16,6 +16,7 @@ namespace Rote.ViewModels
     {
         Deck Deck;
         public event PropertyChangedEventHandler PropertyChanged;
+        DeckDB DeckDatabase;
         CardDB CardDatabase;
         public ObservableCollection<Card> Cards { get; set; }
         public ObservableCollection<Card> Hand { get; set; } 
@@ -35,6 +36,20 @@ namespace Rote.ViewModels
         public MultiChoiceViewModel(Deck Deck)
         {
             this.Deck = Deck;
+            CardDatabase = new CardDB(Deck);
+            Cards = CardDatabase.GetCards();
+            GetHand();
+            Answers = new ObservableCollection<AnswerCard>();
+            Pick = new Command(Picked);
+            Position = 0;
+            index = 0;
+            Setup();
+        }
+
+        public MultiChoiceViewModel(int DeckID)
+        {
+            DeckDatabase = new DeckDB();
+            this.Deck = DeckDatabase.GetDeck(DeckID);
             CardDatabase = new CardDB(Deck);
             Cards = CardDatabase.GetCards();
             GetHand();

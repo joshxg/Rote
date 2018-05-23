@@ -62,7 +62,7 @@
                         FontSize="25"
                         FontAttributes="Bold">
                         <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Settings}"/>
+                        <TapGestureRecognizer Command="{Binding Setting}"/>
                         </Label.GestureRecognizers>
                     </Label>
 
@@ -73,6 +73,8 @@
                 VerticalOptions="End"
                 FontSize="10"
                 Command="{Binding Reset}"/>
+
+        <Label Text="{Binding Test}"/>
     </StackLayout>
 
     </ContentPage>

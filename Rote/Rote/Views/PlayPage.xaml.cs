@@ -16,10 +16,16 @@ namespace Rote.Views
 	{
 		public PlayPage (Deck deck)
 		{
-            BindingContext = new PlayViewModel(deck, Navigation);
+            BindingContext = new PlayViewModel(deck);
             InitializeComponent ();
             
 
         }
-	}
+
+        public PlayPage(int DeckID)
+        {
+            BindingContext = new PlayViewModel(DeckID);
+            InitializeComponent();
+        }
+    }
 }

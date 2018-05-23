@@ -6,6 +6,7 @@ namespace Rote.Services
 {
     public interface ILocalNotifications
     {
-        void SendLocalNotification(string title, string desc, int iconID);
+        void SendLocalNotification();
+
     }
 }

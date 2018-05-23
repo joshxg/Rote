@@ -22,7 +22,13 @@ namespace Rote.Views
             BindingContext = new MultiChoiceViewModel(Deck);
             InitializeComponent();
         }
-	}
+
+        public MultiChoicePage(int DeckID)
+        {
+            BindingContext = new MultiChoiceViewModel(DeckID);
+            InitializeComponent();
+        }
+    }
 
 
 }

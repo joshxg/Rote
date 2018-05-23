@@ -17,6 +17,7 @@ namespace Rote.ViewModels
     public class PlayViewModel : INotifyPropertyChanged
     {
         public INavigation navigation;
+        DeckDB DeckDatabase;
         CardDB CardDatabase;
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Card> Cards { get; set; }
@@ -43,10 +44,22 @@ namespace Rote.ViewModels
 
         
 
-        public PlayViewModel(Deck deck, INavigation navigation)
+        public PlayViewModel(Deck deck)
         {
             Deck = deck;
             CardDatabase = new CardDB(deck);
+            GetHand();
+            this.navigation = navigation;
+            RightAnswer = new Command(Right);
+            WrongAnswer = new Command(Wrong);
+            Flip = new Command(FlipIt);
+        }
+
+        public PlayViewModel(int DeckID)
+        {
+            DeckDatabase = new DeckDB();
+            Deck = DeckDatabase.GetDeck(DeckID);
+            CardDatabase = new CardDB(Deck);
             GetHand();
             this.navigation = navigation;
             RightAnswer = new Command(Right);
@@ -99,7 +112,8 @@ namespace Rote.ViewModels
         public void NavToPopUpAsync()
         {
             PopupNavigation.PushAsync(new PlayPopUp(Deck, 1));
-            navigation.PopAsync();
+            //navigation.PopAsync();
+            Xamarin.Forms.Application.Current.MainPage.Navigation.PopAsync();
         }
 
         public void GetHand()
